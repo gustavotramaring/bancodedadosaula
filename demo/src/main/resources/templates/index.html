@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Clientes</title>
+</head>
+<body>
+    <h1>Clientes</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Limite</th>
+            <th>Atualizar Limite</th>
+        </tr>
+        <tr th:each="cliente : ${clientes}">
+            <td th:text="${cliente.idcliente}"></td>
+            <td th:text="${cliente.nome}"></td>
+            <td th:text="${cliente.email}"></td>
+            <td th:text="${cliente.limite}"></td>
+            <td>
+                <form th:action="@{/clientes/atualizar/{id}(id=${cliente.idcliente})}" method="post">
+                    <input type="number" step="0.01" name="limite" placeholder="Novo limite" required>
+                    <button type="submit">Atualizar</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
